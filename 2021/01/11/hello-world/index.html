@@ -4,19 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>Hello World | Hong&#39;s Blog</title>
+  <title>必懂的git版本控制技術 | Hong&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="主要內容 Git 是什麼？ 初階常用名詞認識 使用免費 GUI 軟體管理 Git 合併修改記錄與解決衝突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
+<meta property="og:title" content="必懂的git版本控制技術">
 <meta property="og:url" content="https://awesomezzz.github.io/2021/01/11/hello-world/index.html">
 <meta property="og:site_name" content="Hong&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="主要內容 Git 是什麼？ 初階常用名詞認識 使用免費 GUI 軟體管理 Git 合併修改記錄與解決衝突">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://awesomezzz.github.io/image/distributed.png">
+<meta property="og:image" content="https://awesomezzz.github.io/image/version.png">
+<meta property="og:image" content="https://awesomezzz.github.io/image/git_worktree_index.png">
 <meta property="article:published_time" content="2021-01-11T11:59:45.000Z">
-<meta property="article:modified_time" content="2021-01-11T11:59:48.567Z">
+<meta property="article:modified_time" content="2021-01-19T17:49:14.649Z">
 <meta property="article:author" content="Hong">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://awesomezzz.github.io/image/distributed.png">
   
     <link rel="alternate" href="/atom.xml" title="Hong's Blog" type="application/atom+xml">
   
@@ -91,7 +95,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Hello World
+      必懂的git版本控制技術
     </h1>
   
 
@@ -99,22 +103,111 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="主要內容"><a href="#主要內容" class="headerlink" title="主要內容"></a>主要內容</h1><ul>
+<li>Git 是什麼？</li>
+<li>初階常用名詞認識</li>
+<li>使用免費 GUI 軟體管理 Git</li>
+<li>合併修改記錄與解決衝突</li>
+</ul>
 <a id="more"></a>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>（<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/">參考資訊</a>）</p>
+<h2 id="Git-是什麼"><a href="#Git-是什麼" class="headerlink" title="Git 是什麼 ?"></a>Git 是什麼 ?</h2><p>簡單卻又文言的說法，Git 是一種「分散式版本的版本控制系統」。<br/><br>什麼是「分散式」？什麼是「版本」？又要「控制」什麼東西？</p>
+<ul>
+<li><strong>分散式</strong><br/><br>當有人想將編輯過的舊檔案上傳到伺服器、覆蓋其他人的最新檔案時，<br/><br>系統會發出警告，因此可以避免在無意中覆蓋他人的編輯內容。</li>
+</ul>
+<p><img src="/image/distributed.png"></p>
+<ul>
+<li><strong>版本控制</strong><br/><br>Git 可以把檔案的狀態作為更新歷史記錄保存起來。<br/><br>因此可以把編輯過的檔案復原到以前的狀態，也可以顯示編輯過內容的差異。</li>
+</ul>
+<p><img src="/image/version.png"></p>
+<p>能保存更新歷史記錄，可顯示編輯前後內容差異，可復原指定版本，並進行衝突管理。<br/></p>
+<p>（圖片來源：<a target="_blank" rel="noopener" href="https://reurl.cc/g88GmL">資訊1</a><br>、<a target="_blank" rel="noopener" href="https://gitbook.tw/chapters/introduction/what-is-git.html">資訊2</a>）<br><br/></p>
+<h2 id="初階常用名詞認識"><a href="#初階常用名詞認識" class="headerlink" title="初階常用名詞認識"></a>初階常用名詞認識</h2><ul>
+<li><p><strong>untracked</strong> ：不加入版本控制。</p>
+</li>
+<li><p><strong>staged</strong> ：加入版本控制，但尚未正式建立新版。</p>
+</li>
+<li><p><strong>conflix</strong>  ：衝突。當不同分支發展不同功能後，要重新組合合併在一起時，在同個檔案有不同的地方，導致無法順利合併時，稱之。</p>
+</li>
+<li><p><strong>hook</strong> ：發生某件事情時通知我。</p>
+</li>
+<li><p><strong>repository</strong> ：簡稱Repo ，版本倉庫或稱版本資料庫，記錄檔案或目錄的狀態。分為遠端Repo 與本地 Repo 。</p>
+<ul>
+<li>遠端 Repo ：多人共享，有專用 Server。</li>
+<li>本地 Repo ：用戶個人使用，比如在自己的電腦上配置的專案倉庫（資料夾）。</li>
+</ul>
+</li>
+<li><p><strong>clone</strong>  ：複製遠端他人或自己的專案到本地。</p>
+</li>
+<li><p><strong>push</strong>  ：本地上傳到遠端。</p>
+</li>
+<li><p><strong>pull</strong>  ：遠端下載到本地。（ pull ＝ fetch + merge ）</p>
+</li>
+<li><p><strong>fetch</strong>  ：只取得遠端最新記錄，沒合併。</p>
+</li>
+<li><p><strong>commit</strong>  ：檔案或目錄變更、新增後，提交（Commit）以儲存到Repo 中。在Repo 產生上次與本次狀態差異記錄（Revision）。一般在 Commit 時可敘明以下 2 點，方便未來能迅速找到想復原的指定版本：</p>
+<ul>
+<li>修改內容的摘要</li>
+<li>修改理由<br/>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用TortoiseGit-管理-Git"><a href="#使用TortoiseGit-管理-Git" class="headerlink" title="使用TortoiseGit 管理 Git"></a>使用TortoiseGit 管理 Git</h2><ul>
+<li><strong>Git 的免費 GUI 管理軟體：</strong><br/><br>  1、Windows 可以安裝 <a target="_blank" rel="noopener" href="https://tortoisegit.org/">TortoiseGit</a>。<br/><br>  2、Mac 可以安裝 <a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">SourceTree</a>。<br/><br/><br/>
+
+</li>
+</ul>
+<h3 id="工作目錄與索引"><a href="#工作目錄與索引" class="headerlink" title="工作目錄與索引"></a>工作目錄與索引</h3><p>首先，先了解兩個名詞，</p>
+<ul>
+<li><p>工作目錄（Working Tree）：是保存您目前正在處理檔案的目錄，Git 相關的操作都會在這個目錄下完成。</p>
+</li>
+<li><p>索引(Index )：位於工作目錄和數據庫之間，是為了向數據庫提交作準備的暫存區域。</p>
+</li>
+</ul>
+<p><img src="/image/git_worktree_index.png" alt="運作流程"></p>
+<ul>
+<li>運作模式：（圖片引用自<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/intro/intro1_4.html/">連猴子都能懂的Git入門指南</a>）<br/><br>在提交至數據庫變更時，需先把變更內容加入索引中，而索引的存在也可排除工作目錄裡不必要的檔案提交，也就是並非將該工作目錄裡所有檔案全部提交。<br/>
+
+</li>
+</ul>
+<h3 id="運行基本順序"><a href="#運行基本順序" class="headerlink" title="運行基本順序"></a>運行基本順序</h3><p>1、<code> git init</code>：初始化。<br/><br>2、<code> git status</code>：確認狀態。<br/><br>3、將不要的檔案都放入 .gitignore： .gitignore 版本控制後，讓其他夥伴也知道你把甚麼檔案放進去。<br/><br>4、<code> git add.</code>：將所有檔案都加入版本控制（加入資料夾）。<br/><br>5、<code> git commit –am”版本名稱”</code>：建立版本及版本名（命名資料夾名稱）。<br/><br>6、<code> git branch –v</code>：確認主幹及分支。<br><br/></p>
+<h3 id="常用語法"><a href="#常用語法" class="headerlink" title="常用語法"></a>常用語法</h3><p>1、<code>git init </code>：初始化 git。<br/></p>
+<p>2、<code> git status</code>：git 目前版本狀態查詢。<br/></p>
+<p>3、<code> git add</code>：git add +檔案，將檔案加入版本控制。例：git add 123，將檔案名稱123加入版本控制。<br/></p>
+<p>4、<code> git add .</code>：一次將目前所有檔案都加入版本控制。<br/></p>
+<p>5、<code> git rm --cached</code>：git rm –cached +檔案，將檔案移除版本控制。<br/></p>
+<p>6、<code> git commit</code>：新建版本（就像新建一個資料夾），輸入 git commit 後就會進入到編輯器vim，在裡面可以新增 commit message （版本敘述，就像是資料夾名稱一樣），一樣是:q!或是:wq跳回。<br/></p>
+<p>7、<code> git log</code>：查看版本歷史紀錄。每個版本上方會寫commit 後面接一串英數交雜，這個就是版本(編)號。<br/></p>
+<p>8、<code> git checkout</code>：git checkout + 完整的版本號。將版本更改到版本號的那個版本。<br/></p>
+<p>9、<code> git checkout master</code>：將版本更改到最新的版本。<br/></p>
+<p>10、<code> git branch –v</code>：確認主幹及分支。<br/></p>
+<p>11、<code> git branch + 分支名稱</code>：新增分支並命名。<br/></p>
+<p>12、<code> git branch –d +分支名稱</code>：刪除分支。<br/></p>
+<p>13、<code> git checkout + 分支名稱</code>：移動到該分支。<br/></p>
+<p>14、<code> git merge +分支名稱</code>：git merge A，將 A 分支合併進目前所在的分支。<br/></p>
+<p>15、<code> git push + 遠端主機（git hub）名稱（通常叫做 origin） + 本地分支名稱</code>：將本地已經 commit 的版本上傳更新到 git hub。若之後有在本地新增 branch，也是一樣用此語法。<br/></p>
+<p>16、<code> git pull +遠端主機(git hub)名稱（通常叫做 origin） + 遠端分支名稱</code>：將遠端的分支下載下來（通常發生在多人協作時，需要將別人修改過上傳到 github 的分支再次下載下來使用）。<br/></p>
+<p>17、<code> git clone +網址</code>：將遠端的 repository 下載下來。<br/></p>
+<p>18、<code> git commit --amend</code>：更改已經 commit 的 commit message。會進入到編輯器裡，在裡面直接更改並儲存離開。<br/></p>
+<p>19、<code> git reset HEAD^</code>：（已經 commit）回到 commit 前的那個狀態（還保留此次修改的版本，只是尚未 commit），通常發生在 commit 後但又發現有錯需要更正內容。<br/></p>
+<p>20、<code> git reset HEAD^ --hard</code>：（已經 commit）回到上一個版本的狀態（此次 commit 的內容完全消失）。<br/></p>
+<p>21、<code> git reset +版本號</code>：（已經 commit ）回到該版本號的狀態（等同於放棄目前最新的狀態）。<br/></p>
+<p>22、<code> git checkout --</code>：（尚未 commit）回到上一個版本的狀態（等同於放棄此次修改的東西）。<br/></p>
+<p>23、<code> git branch –m + 新的 branch 名稱</code>：（必須在欲修改的那個 branch 上）修改 branch 名稱。<br/></p>
+<p>24、<code> git checkout + 遠端的 branch 名稱</code>：將遠端的branch下載下來。<br/></p>
+<p>更多： <a target="_blank" rel="noopener" href="https://hackmd.io/@Yu040419/SyHrpos6V">資訊</a><br><br/></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ </span><br></pre></td></tr></table></figure>
+<p>More info: <a href="">Generating</a></p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ </span><br></pre></td></tr></table></figure>
+<p>More info: <a href="">Deployment</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://awesomezzz.github.io/2021/01/11/hello-world/" data-id="ckjslgh6z0001fctsec098dcf" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://awesomezzz.github.io/2021/01/11/hello-world/" data-id="ckk4azw0c0001istsbrehcybp" data-title="必懂的git版本控制技術" class="article-share-link">Share</a>
       
       
       
@@ -186,7 +279,7 @@
       <ul>
         
           <li>
-            <a href="/2021/01/11/hello-world/">Hello World</a>
+            <a href="/2021/01/11/hello-world/">必懂的git版本控制技術</a>
           </li>
         
           <li>
