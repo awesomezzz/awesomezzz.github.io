@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>必懂的Git版本控制技術 | Hong&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="主要內容 Git 是什麼？ 使用免費 GUI 軟體管理 Git 合併修改記錄與解決衝突 運行基本順序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="必懂的Git版本控制技術">
+<meta property="og:url" content="https://awesomezzz.github.io/2021/01/21/%E5%BF%85%E6%87%82%E7%9A%84Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E6%8A%80%E8%A1%93/index.html">
+<meta property="og:site_name" content="Hong&#39;s Blog">
+<meta property="og:description" content="主要內容 Git 是什麼？ 使用免費 GUI 軟體管理 Git 合併修改記錄與解決衝突 運行基本順序">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://awesomezzz.github.io/images/distributed.png">
+<meta property="og:image" content="https://awesomezzz.github.io/images/version.png">
+<meta property="og:image" content="https://awesomezzz.github.io/images/git_worktree_index.png">
+<meta property="og:image" content="https://awesomezzz.github.io/images/merge1.png">
+<meta property="og:image" content="https://awesomezzz.github.io/images/merge2.png">
+<meta property="og:image" content="https://awesomezzz.github.io/images/modify1.png">
+<meta property="og:image" content="https://awesomezzz.github.io/images/modify2.png">
+<meta property="article:published_time" content="2021-01-21T07:45:21.000Z">
+<meta property="article:modified_time" content="2021-01-21T07:45:22.597Z">
+<meta property="article:author" content="Hong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://awesomezzz.github.io/images/distributed.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hong's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hong&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">程式學習紀錄</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜尋"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://awesomezzz.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-必懂的Git版本控制技術" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/21/%E5%BF%85%E6%87%82%E7%9A%84Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E6%8A%80%E8%A1%93/" class="article-date">
+  <time class="dt-published" datetime="2021-01-21T07:45:21.000Z" itemprop="datePublished">2021-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      必懂的Git版本控制技術
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="主要內容"><a href="#主要內容" class="headerlink" title="主要內容"></a>主要內容</h1><ul>
+<li>Git 是什麼？</li>
+<li>使用免費 GUI 軟體管理 Git</li>
+<li>合併修改記錄與解決衝突</li>
+<li>運行基本順序</li>
+</ul>
+<a id="more"></a>
+
+<p>（<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/">參考資訊</a>）<br/><br/></p>
+<h2 id="Git-是什麼"><a href="#Git-是什麼" class="headerlink" title="Git 是什麼 ?"></a>Git 是什麼 ?</h2><p>簡單卻又文言的說法，Git 是一種「分散式版本的版本控制系統」。<br/><br>什麼是「分散式」？什麼是「版本」？又要「控制」什麼東西？</p>
+<ul>
+<li><strong>分散式</strong><br/><br>當有人想將編輯過的舊檔案上傳到伺服器、覆蓋其他人的最新檔案時，<br/><br>系統會發出警告，因此可以避免在無意中覆蓋他人的編輯內容。</li>
+</ul>
+<img src="/images/distributed.png" style="zoom:70%" />
+
+
+<ul>
+<li><strong>版本控制</strong><br/><br>Git 可以把檔案的狀態作為更新歷史記錄保存起來。<br/><br>因此可以把編輯過的檔案復原到以前的狀態，也可以顯示編輯過內容的差異。</li>
+</ul>
+<p><img src="/images/version.png"></p>
+<p>能保存更新歷史記錄，可顯示編輯前後內容差異，可復原指定版本，並進行衝突管理。<br/></p>
+<p>（圖片來源：<a target="_blank" rel="noopener" href="https://reurl.cc/g88GmL">資訊1</a>、<a target="_blank" rel="noopener" href="https://gitbook.tw/chapters/introduction/what-is-git.html">資訊2</a>）<br><br/><br/></p>
+<h2 id="使用免費-GUI-軟體管理-Git"><a href="#使用免費-GUI-軟體管理-Git" class="headerlink" title="使用免費 GUI 軟體管理 Git"></a>使用免費 GUI 軟體管理 Git</h2><ul>
+<li><strong>Git 的免費 GUI 管理軟體：</strong><br/><br>  1、Windows 可以安裝 <a target="_blank" rel="noopener" href="https://tortoisegit.org/">TortoiseGit</a>。<br/><br>  2、Mac 可以安裝 <a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">SourceTree</a>。<br><br/><br/></li>
+</ul>
+<h2 id="工作目錄與索引"><a href="#工作目錄與索引" class="headerlink" title="工作目錄與索引"></a>工作目錄與索引</h2><p>首先，先了解兩個名詞，</p>
+<ul>
+<li><p>工作目錄（Working Tree）：是保存您目前正在處理檔案的目錄，Git 相關的操作都會在這個目錄下完成。</p>
+</li>
+<li><p>索引(Index )：位於工作目錄和數據庫之間，是為了向數據庫提交作準備的暫存區域。</p>
+</li>
+</ul>
+<p><img src="/images/git_worktree_index.png" alt="運作流程"></p>
+<ul>
+<li>運作模式：（圖片引用自<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/intro/intro1_4.html/">連猴子都能懂的Git入門指南</a>）<br/><br>在提交至數據庫變更時，需先把變更內容加入索引中，而索引的存在也可排除工作目錄裡不必要的檔案提交，也就是並非將該工作目錄裡所有檔案全部提交。<br><br/><br/></li>
+</ul>
+<h2 id="合併修改記錄與解決衝突"><a href="#合併修改記錄與解決衝突" class="headerlink" title="合併修改記錄與解決衝突"></a>合併修改記錄與解決衝突</h2><p>在製作專案的時候，版本控制每一個版本記錄時，</p>
+<ul>
+<li><strong>自動合併修改</strong></li>
+</ul>
+<p><img src="/images/merge1.png"></p>
+<p>版本控制多人合作專案時，於上次的push到執行下一次的push的期間，如果有其他人push更新了遠端數據庫，而我方沒有更新本地端數據庫，那麼我方的push會被拒絕。</p>
+<p><img src="/images/merge2.png"></p>
+<p>上圖為需要進行合併操作導入其他人的修改歷史，不然push都會被拒絕喔。若沒有合併直接覆蓋歷史記錄的話，其他人push的修改內容（如圖提交C）會消失。</p>
+<p>詳見：<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/intro/intro5_1.html">參考</a></p>
+<ul>
+<li><strong>手動合併修改衝突</strong></li>
+</ul>
+<p>Git執行合併可能會自動合併修改的部分。但是也可能有不能自動合併的時候。<br>發生衝突的地方，Git會修改檔案的內容如下圖顯示。所以衝突的地方需要手動修改喔。</p>
+<p><img src="/images/modify1.png"></p>
+<p>用===分隔的上方是「本地端數據庫的編輯內容」，下方是「遠端數據庫的編輯內容」。<br>刪除多餘的標示行，也就是所謂的修改衝突。</p>
+<p><img src="/images/modify2.png"></p>
+<p>修改好所有衝突的地方之後，執行提交就會提交衝突的合併訊息的提交內容。</p>
+<p>詳見：<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/intro/intro5_2.html">參考</a><br/><br/></p>
+<h2 id="運行基本順序"><a href="#運行基本順序" class="headerlink" title="運行基本順序"></a>運行基本順序</h2><p>1、<code> git init</code>：初始化。<br/><br>2、<code> git status</code>：確認狀態。<br/><br>3、將不要的檔案都放入 .gitignore： .gitignore 版本控制後，讓其他夥伴也知道你把甚麼檔案放進去。<br/><br>4、<code> git add.</code>：將所有檔案都加入版本控制（加入資料夾）。<br/><br>5、<code> git commit –am”版本名稱”</code>：建立版本及版本名（命名資料夾名稱）。<br/><br>6、<code> git branch –v</code>：確認主幹及分支。<br><br/></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://awesomezzz.github.io/2021/01/21/%E5%BF%85%E6%87%82%E7%9A%84Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E6%8A%80%E8%A1%93/" data-id="ckk6jvmle00003stse3ewgib5" data-title="必懂的Git版本控制技術" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/21/Git-%E5%B8%B8%E7%94%A8%E5%90%8D%E8%A9%9E%E8%88%87%E5%B8%B8%E7%94%A8%E8%AA%9E%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git 常用名詞與常用語法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/11/About%20Me/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">About Me</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+    <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+        var disqus_config = function () {
+        this.language = "zh_TW"; // Disqus 顯示語言
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hong-5.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article></section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/21/Git-%E5%B8%B8%E7%94%A8%E5%90%8D%E8%A9%9E%E8%88%87%E5%B8%B8%E7%94%A8%E8%AA%9E%E6%B3%95/">Git 常用名詞與常用語法</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/21/%E5%BF%85%E6%87%82%E7%9A%84Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E6%8A%80%E8%A1%93/">必懂的Git版本控制技術</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/11/About%20Me/">About Me</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Hong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
