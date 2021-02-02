@@ -32,7 +32,6 @@
 - 盡可能詳述所學，分享給讀者一同學習。
 
 
-
 ## Blog Link
 
-[Hong's Blog](https://awesomezzz.github.io/)
+- [Hong's Blog](https://awesomezzz.github.io/)
